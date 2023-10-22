@@ -1,3 +1,3 @@
 # 055_ViewModel
 
-![image](https://github.com/thariqazhar/055_ViewModel/assets/114936593/f3c0953f-fb6d-4df6-9158-a5bbf68891f4)
+![image](https://github.com/thariqazhar/055_ViewModel/assets/114936593/5fdb2dc6-cd97-4684-ba89-a1dd38e84af7)
