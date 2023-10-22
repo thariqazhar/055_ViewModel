@@ -63,7 +63,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun SelectJK(
     options : List<String>,
-    onSelectionChange: (String) -> Unit = {}
+    onSelectionChanged: (String) -> Unit = {}
 ){
     var selectedValue by rememberSaveable{ mutableStateOf("")}
 
@@ -74,7 +74,7 @@ fun SelectJK(
                     selected = selectedValue == item,
                     onClick = {
                         selectedValue = item
-                        onSelectionChange(item)
+                        onSelectionChanged(item)
                     }
                 ),
                 verticalAlignment = Alignment.CenterVertically
@@ -82,7 +82,7 @@ fun SelectJK(
                 RadioButton(selected = selectedValue == item,
                     onClick = {
                         selectedValue = item
-                        onSelectionChange(item)
+                        onSelectionChanged(item)
                     }
                 )
                 Text(item)
@@ -97,6 +97,7 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
 
     var textNama by remember { mutableStateOf("")}
     var textTlp by remember { mutableStateOf("")}
+    var textAlmt by remember { mutableStateOf("")}
 
     val context = LocalContext.current
     val dataForm: DataForm
@@ -124,13 +125,25 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
             textTlp = it
         }
     )
+
+    OutlinedTextField(
+        value = textAlmt,
+        singleLine = true,
+        shape = MaterialTheme.shapes.large,
+        modifier = Modifier.fillMaxWidth(),
+        label = {Text(text = "Alamat Lengkap")},
+        onValueChange = {
+            textAlmt = it
+        }
+    )
+
     SelectJK(
         options = jenis.map { id -> context.resources.getString(id) },
-        onSelectionChange = {cobaViewModel.setJenisK(it)})
+        onSelectionChanged = {cobaViewModel.setJenisK(it)})
     Button(
         modifier = Modifier.fillMaxWidth(),
         onClick = {
-            cobaViewModel.insertData(textNama,textTlp, dataForm.sex)
+            cobaViewModel.insertData(textNama,textTlp,textAlmt,dataForm.sex)
         }
     ) {
         Text(
@@ -142,12 +155,13 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
     TextHasil(
         namanya = cobaViewModel.namaUsr,
         teleponnya = cobaViewModel.noTlp,
+        alamatnya = cobaViewModel.namaAlmt,
         jenisnya = cobaViewModel.jenisKl
     )
 }
 
 @Composable
-fun TextHasil(namanya: String, teleponnya: String, jenisnya: String){
+fun TextHasil(namanya: String, teleponnya: String, alamatnya: String, jenisnya: String){
     ElevatedCard (
         elevation = CardDefaults.cardElevation(
             defaultElevation = 6.dp
@@ -159,7 +173,12 @@ fun TextHasil(namanya: String, teleponnya: String, jenisnya: String){
             modifier = Modifier
                 .padding(horizontal = 10.dp, vertical = 4.dp)
         )
-        Text(text = "Telepon : " +teleponnya,
+        Text(text = "Telepon : " + teleponnya,
+            modifier = Modifier
+                .padding(horizontal = 10.dp, vertical = 5.dp)
+        )
+        Text(
+            text = "Alamat : " + alamatnya,
             modifier = Modifier
                 .padding(horizontal = 10.dp, vertical = 5.dp)
         )
