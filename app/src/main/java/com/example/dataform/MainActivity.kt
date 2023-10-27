@@ -148,7 +148,7 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
     Column {
         Text(
             text = "Register",
-            fontSize = 10.sp,
+            fontSize = 15.sp,
             textAlign = TextAlign.Center
         )
         Text(
@@ -240,28 +240,20 @@ fun TextHasil(namanya: String, teleponnya: String, emailnya: String, jenisnya: S
         modifier = Modifier
             .fillMaxWidth()
     ){
-        Text(text = "Nama : " + namanya,
-            modifier = Modifier
-                .padding(horizontal = 10.dp, vertical = 4.dp)
-        )
-        Text(text = "Telepon : " + teleponnya,
-            modifier = Modifier
-                .padding(horizontal = 10.dp, vertical = 5.dp)
-        )
-        Text(text = "Email : " + emailnya,
-            modifier = Modifier
-                .padding(horizontal = 10.dp, vertical = 5.dp)
-        )
         Text(text = "Jenis Kelamin : " + jenisnya,
             modifier = Modifier
                 .padding(horizontal = 10.dp, vertical = 4.dp)
         )
-        Text(text = "Status : " + nikahnya,
+        Text(text = "Status : " + emailnya,
+            modifier = Modifier
+                .padding(horizontal = 10.dp, vertical = 5.dp)
+        )
+        Text(text = "Alamat : " + nikahnya,
             modifier = Modifier
                 .padding(horizontal = 10.dp, vertical = 4.dp)
         )
         Text(
-            text = "Alamat : " + alamatnya,
+            text = "Email : " + alamatnya,
             modifier = Modifier
                 .padding(horizontal = 10.dp, vertical = 5.dp)
         )
